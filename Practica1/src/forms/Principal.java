@@ -5,9 +5,17 @@
  */
 package forms;
 
+import Lectura.Leer;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -117,10 +125,11 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     
+        
+        Leer  instancia = new Leer(); 
         JFileChooser filechooserabrir = new JFileChooser();
         filechooserabrir.setFileSelectionMode( JFileChooser.FILES_ONLY );
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos xml (*.txt)", "txt");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos xml (*.xml)", "xml");
         filechooserabrir.setFileFilter(filtro);
         int seleccion = filechooserabrir.showOpenDialog(this);
         if(seleccion == JFileChooser.APPROVE_OPTION )
@@ -128,8 +137,26 @@ public class Principal extends javax.swing.JFrame {
             
           File file = filechooserabrir.getSelectedFile();
           String dir = file.getAbsolutePath();
+          System.out.print(dir);   
+          
+        SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();  
+        SAXParser saxParser = null;  
+            try {
+                
+                saxParser = saxParserFactory.newSAXParser();
+                Leer  xml = new Leer();
+                saxParser.parse(dir, xml);
+                
+            } catch (ParserConfigurationException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       
             
-         System.out.print(dir);   
+          
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
