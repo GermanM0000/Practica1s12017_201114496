@@ -1,0 +1,25 @@
+digraph G{
+rankdir = TB;
+node[shape=box, style=filled ,width=1.10, fillcolor=azure1, color =blue]
+subgraph cluster_0{
+nodoGerman[ label = "Usuario: German"]
+nodoJose[ label = "Usuario: Jose"]
+nodoCHEPE[ label = "Usuario: CHEPE"]
+nodoCarmona[ label = "Usuario: Carmona"]
+nodoRosa[ label = "Usuario: Rosa"]
+nodoPedro[ label = "Usuario: Pedro"]
+nodoJuan[ label = "Usuario: Juan"]
+nodopablo[ label = "Usuario: pablo"]
+nodomaria[ label = "Usuario: maria"]
+nodoGerman-> nodoJose
+nodoJose-> nodoCHEPE
+nodoCHEPE-> nodoCarmona
+nodoCarmona-> nodoRosa
+nodoRosa-> nodoPedro
+nodoPedro-> nodoJuan
+nodoJuan-> nodopablo
+nodopablo-> nodomaria
+nodomaria-> nodoGerman
+ [ label = " Lista De Usuarios"]
+}
+}

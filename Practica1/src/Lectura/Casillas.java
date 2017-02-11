@@ -9,7 +9,7 @@ package Lectura;
  *
  * @author German
  */
-class Casillas {
+public class Casillas {
     
     
     String x;
@@ -42,8 +42,10 @@ class Casillas {
     public void setValor(String valor) {
         this.valor = valor;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Casillas{" + "x=" + x + ", y=" + y + ", valor=" + valor + '}';
+    }
     
 }

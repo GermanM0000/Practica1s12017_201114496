@@ -14,8 +14,8 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class Leer  extends DefaultHandler{
 
-    private ArrayList<Casillas> casilla =  new ArrayList<Casillas>();
-    private ArrayList<String> dicci =  new ArrayList<String>();
+    public ArrayList<Casillas> casilla =  new ArrayList<Casillas>();
+    public ArrayList<String> dicci =  new ArrayList<String>();
 
     public ArrayList<Casillas> getCasilla() {
         return casilla;
@@ -104,5 +104,5 @@ public class Leer  extends DefaultHandler{
         }
     }
     
-    
+   
 }

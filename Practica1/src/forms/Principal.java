@@ -5,9 +5,12 @@
  */
 package forms;
 
+import Lectura.Casillas;
+import Lectura.Dic;
 import Lectura.Leer;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -62,6 +65,11 @@ public class Principal extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         jButton2.setText("Jugar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Menu Principal");
@@ -127,11 +135,15 @@ public class Principal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         Leer  instancia = new Leer(); 
+        
+       
         JFileChooser filechooserabrir = new JFileChooser();
         filechooserabrir.setFileSelectionMode( JFileChooser.FILES_ONLY );
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos xml (*.xml)", "xml");
         filechooserabrir.setFileFilter(filtro);
         int seleccion = filechooserabrir.showOpenDialog(this);
+        
+        
         if(seleccion == JFileChooser.APPROVE_OPTION )
         {
             
@@ -144,8 +156,22 @@ public class Principal extends javax.swing.JFrame {
             try {
                 
                 saxParser = saxParserFactory.newSAXParser();
-                Leer  xml = new Leer();
-                saxParser.parse(dir, xml);
+                saxParser.parse(dir, instancia);
+                ArrayList<Casillas> casilla =  instancia.getCasilla();
+                  
+                    for(Casillas c : casilla)
+                    {
+
+                    }
+                
+                 ArrayList<String> dic =  instancia.getDicci();
+                 
+                     for(int i=0;  i<=dic.size()-1; i++)
+                     {
+                        System.out.println("words: " + dic.get(i));
+                     }
+                    
+                    
                 
             } catch (ParserConfigurationException ex) {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
@@ -155,11 +181,21 @@ public class Principal extends javax.swing.JFrame {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
        
-            
           
+            
         }
         
+        
+      
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       Jugadores  j = new Jugadores();
+       j.setLocationRelativeTo(null);
+       j.setVisible(true);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

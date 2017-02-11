@@ -9,7 +9,7 @@ package Lectura;
  *
  * @author German
  */
-class Dic {
+public class Dic {
     
     String palabra;
     String numero;
